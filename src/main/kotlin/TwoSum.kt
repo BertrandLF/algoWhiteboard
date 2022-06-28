@@ -1,19 +1,15 @@
 class TwoSum {
 
     fun twoSum(nums: IntArray, target: Int): IntArray {
-        var result = intArrayOf(0, 0)
         // will store at index i the complement of the value at index i in nums
-        val complements = hashSetOf<Int>()
+        val complements = hashMapOf<Int, Int>()
         for ((i, iValue) in nums.withIndex()) {
             val complement = target - iValue
-            println("Complements: $complements, Value: $iValue")
             if (complements.contains(iValue))
-                result = intArrayOf(complements.indexOf(iValue), i)
-            complements.add(complement)
+                return intArrayOf(complements[iValue]!!, i)
+            complements[complement] = i
         }
-        println(complements)
-        return result
+        return intArrayOf(0, 0)
     }
-
 
 }
